@@ -7,8 +7,8 @@ var execute = function(accessory,characteristic,value){ console.log("executed ac
 
 exports.accessory = {
   displayName: "Coffee",
-  username: "CC:22:3D:EE:5E:FA",
-  pincode: "031-45-154",
+  username: "CC:DD:6F:EE:5E:FA",
+  pincode: "031-45-155",
   services: [{
     sType: types.ACCESSORY_INFORMATION_STYPE, 
     characteristics: [{
@@ -76,7 +76,7 @@ exports.accessory = {
 		designedMaxLength: 255   
     },{
     	cType: types.POWER_STATE_CTYPE,
-    	onUpdate: function(value) { console.log("Change:",value); execute("Fan", "Fan Power", value); },
+    	onUpdate: function(value) { console.log("Change:",value); execute("Coffee", "Coffee Power", value); },
     	perms: ["pw","pr","ev"],
 		format: "bool",
 		initialValue: false,
