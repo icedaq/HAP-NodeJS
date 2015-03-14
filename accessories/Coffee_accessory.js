@@ -8,7 +8,7 @@ var execute = function(accessory,characteristic,value){ console.log("executed ac
 exports.accessory = {
   displayName: "Coffee",
   username: "CC:22:3D:EE:5E:FA",
-  pincode: "1337",
+  pincode: "031-45-154",
   services: [{
     sType: types.ACCESSORY_INFORMATION_STYPE, 
     characteristics: [{
