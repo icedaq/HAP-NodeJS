@@ -4,36 +4,35 @@ var exports = module.exports = {};
 
 var exec = require('child_process');
 
-function sendMessage(message, socket){
-    exec.execFile('../remote',
-        ['-m', message],
+function sendOn(){
+    exec.execFile('sudo /usr/bin/remote -m 11',
             function (error, stdout, stderr) {
                 console.log('stdout: ' + stdout);
                 console.log('stderr: ' + stderr);
-                if( stdout.indexOf("Got this response") > -1 ){
-                    var state = stdout.split('Got this response ')[1].split('.')[0];
-                    socket.emit(
-                    "callbackButton",
-                    {
-                    message: "received",
-                    operation: message,
-                    state: state
-                    });
                 }
 
                 if (error !== null) {
                     console.log('exec error: ' + error);
-                    socket.emit(
-                    "callbackError",
-                    {
-                    error: error
-                    });
+                }
+            });
+}
+
+function sendOff(){
+    exec.execFile('sudo /usr/bin/remote -m 10',
+            function (error, stdout, stderr) {
+                console.log('stdout: ' + stdout);
+                console.log('stderr: ' + stderr);
+                }
+
+                if (error !== null) {
+                    console.log('exec error: ' + error);
                 }
             });
 }
 
 var execute = function(accessory,characteristic,value){ 
 
+    sendOn();
     console.log("executed accessory: " + accessory + ", and characteristic: " + characteristic + ", with value: " +  value + "."); 
     
 }
