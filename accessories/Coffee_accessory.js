@@ -5,7 +5,7 @@ var exports = module.exports = {};
 var exec = require('child_process');
 
 function sendOn(){
-    exec.execFile('sudo /usr/bin/remote -m 11',
+    exec.exec('sudo /usr/bin/remote -m 11',
             function (error, stdout, stderr) {
                 console.log('stdout: ' + stdout);
                 console.log('stderr: ' + stderr);
@@ -17,7 +17,7 @@ function sendOn(){
 }
 
 function sendOff(){
-    exec.execFile('sudo /usr/bin/remote -m 10',
+    exec.exec('sudo /usr/bin/remote -m 10',
             function (error, stdout, stderr) {
                 console.log('stdout: ' + stdout);
                 console.log('stderr: ' + stderr);
@@ -30,7 +30,13 @@ function sendOff(){
 
 var execute = function(accessory,characteristic,value){ 
 
-    sendOn();
+    if(value)
+    {    
+        sendOn();
+    } else {
+        sendOff();
+    }
+
     console.log("executed accessory: " + accessory + ", and characteristic: " + characteristic + ", with value: " +  value + "."); 
     
 }
