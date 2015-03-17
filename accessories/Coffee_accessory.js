@@ -9,7 +9,6 @@ function sendOn(){
             function (error, stdout, stderr) {
                 console.log('stdout: ' + stdout);
                 console.log('stderr: ' + stderr);
-                }
 
                 if (error !== null) {
                     console.log('exec error: ' + error);
@@ -22,7 +21,6 @@ function sendOff(){
             function (error, stdout, stderr) {
                 console.log('stdout: ' + stdout);
                 console.log('stderr: ' + stderr);
-                }
 
                 if (error !== null) {
                     console.log('exec error: ' + error);
