@@ -2,13 +2,46 @@
 var types = require("./types.js")
 var exports = module.exports = {};
 
-// Replace this here with something useful.
-var execute = function(accessory,characteristic,value){ console.log("executed accessory: " + accessory + ", and characteristic: " + characteristic + ", with value: " +  value + "."); }
+var exec = require('child_process');
+
+function sendMessage(message, socket){
+    exec.execFile('../remote',
+        ['-m', message],
+            function (error, stdout, stderr) {
+                console.log('stdout: ' + stdout);
+                console.log('stderr: ' + stderr);
+                if( stdout.indexOf("Got this response") > -1 ){
+                    var state = stdout.split('Got this response ')[1].split('.')[0];
+                    socket.emit(
+                    "callbackButton",
+                    {
+                    message: "received",
+                    operation: message,
+                    state: state
+                    });
+                }
+
+                if (error !== null) {
+                    console.log('exec error: ' + error);
+                    socket.emit(
+                    "callbackError",
+                    {
+                    error: error
+                    });
+                }
+            });
+}
+
+var execute = function(accessory,characteristic,value){ 
+
+    console.log("executed accessory: " + accessory + ", and characteristic: " + characteristic + ", with value: " +  value + "."); 
+    
+}
 
 exports.accessory = {
   displayName: "Coffee",
-  username: "CC:DD:6F:EE:5E:FA",
-  pincode: "031-45-155",
+  username: "CC:33:3D:FF:6A:FA",
+  pincode: "031-45-154",
   services: [{
     sType: types.ACCESSORY_INFORMATION_STYPE, 
     characteristics: [{
@@ -16,7 +49,7 @@ exports.accessory = {
     	onUpdate: null,
     	perms: ["pr"],
 		format: "string",
-		initialValue: "Coffee",
+		initialValue: "Fan",
 		supportEvents: false,
 		supportBonjour: false,
 		manfDescription: "Name of the accessory",
@@ -26,7 +59,7 @@ exports.accessory = {
     	onUpdate: null,
     	perms: ["pr"],
 		format: "string",
-		initialValue: "Liniger Solutions",
+		initialValue: "Oltica",
 		supportEvents: false,
 		supportBonjour: false,
 		manfDescription: "Manufacturer",
@@ -46,7 +79,7 @@ exports.accessory = {
     	onUpdate: null,
     	perms: ["pr"],
 		format: "string",
-		initialValue: "RANDOMNR",
+		initialValue: "A1S2NASF88EW",
 		supportEvents: false,
 		supportBonjour: false,
 		manfDescription: "SN",
@@ -69,20 +102,20 @@ exports.accessory = {
     	onUpdate: null,
     	perms: ["pr"],
 		format: "string",
-		initialValue: "Make coffee",
+		initialValue: "Fan Control",
 		supportEvents: false,
 		supportBonjour: false,
 		manfDescription: "Name of service",
 		designedMaxLength: 255   
     },{
     	cType: types.POWER_STATE_CTYPE,
-    	onUpdate: function(value) { console.log("Change:",value); execute("Coffee", "Coffee Power", value); },
+    	onUpdate: function(value) { console.log("Change:",value); execute("Fan", "Fan Power", value); },
     	perms: ["pw","pr","ev"],
 		format: "bool",
 		initialValue: false,
 		supportEvents: false,
 		supportBonjour: false,
-		manfDescription: "Make some coffee.",
+		manfDescription: "Change the power state of the fan",
 		designedMaxLength: 1    
     }]
   }]
