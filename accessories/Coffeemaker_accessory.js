@@ -99,7 +99,7 @@ exports.accessory = {
 		designedMaxLength: 1    
     }]
   },{
-    sType: types.SWITCH_STYPE, 
+    sType: types.FAN_STYPE, 
     characteristics: [{
     	cType: types.NAME_CTYPE,
     	onUpdate: null,
