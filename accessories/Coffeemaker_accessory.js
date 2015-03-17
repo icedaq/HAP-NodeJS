@@ -42,7 +42,7 @@ var execute = function(accessory,characteristic,value){
 }
 
 exports.accessory = {
-  displayName: "Coffee",
+  displayName: "Coffeemaker",
   username: "CC:33:3D:FF:6A:FA",
   pincode: "031-45-154",
   services: [{
@@ -52,7 +52,7 @@ exports.accessory = {
     	onUpdate: null,
     	perms: ["pr"],
 		format: "string",
-		initialValue: "Fan",
+		initialValue: "Coffeemaker",
 		supportEvents: false,
 		supportBonjour: false,
 		manfDescription: "Name of the accessory",
@@ -62,7 +62,7 @@ exports.accessory = {
     	onUpdate: null,
     	perms: ["pr"],
 		format: "string",
-		initialValue: "Oltica",
+		initialValue: "Liniger Solutions",
 		supportEvents: false,
 		supportBonjour: false,
 		manfDescription: "Manufacturer",
@@ -82,7 +82,7 @@ exports.accessory = {
     	onUpdate: null,
     	perms: ["pr"],
 		format: "string",
-		initialValue: "A1S2NASF88EW",
+		initialValue: "1337",
 		supportEvents: false,
 		supportBonjour: false,
 		manfDescription: "SN",
@@ -105,20 +105,20 @@ exports.accessory = {
     	onUpdate: null,
     	perms: ["pr"],
 		format: "string",
-		initialValue: "Fan Control",
+		initialValue: "Coffeemaker Control",
 		supportEvents: false,
 		supportBonjour: false,
 		manfDescription: "Name of service",
 		designedMaxLength: 255   
     },{
     	cType: types.POWER_STATE_CTYPE,
-    	onUpdate: function(value) { console.log("Change:",value); execute("Fan", "Fan Power", value); },
+    	onUpdate: function(value) { console.log("Change:",value); execute("Coffeemaker", "Coffeemaker Power", value); },
     	perms: ["pw","pr","ev"],
 		format: "bool",
 		initialValue: false,
 		supportEvents: false,
 		supportBonjour: false,
-		manfDescription: "Change the power state of the fan",
+		manfDescription: "Change the power state of the Coffeemaker",
 		designedMaxLength: 1    
     }]
   }]
