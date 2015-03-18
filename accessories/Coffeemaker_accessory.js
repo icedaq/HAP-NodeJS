@@ -99,13 +99,13 @@ exports.accessory = {
 		designedMaxLength: 1    
     }]
   },{
-    sType: types.FAN_STYPE, 
+    sType: types.SWITCH_STYPE, 
     characteristics: [{
     	cType: types.NAME_CTYPE,
     	onUpdate: null,
     	perms: ["pr"],
 		format: "string",
-		initialValue: "Coffeemaker Control",
+		initialValue: "Coffeemaker",
 		supportEvents: false,
 		supportBonjour: false,
 		manfDescription: "Name of service",
